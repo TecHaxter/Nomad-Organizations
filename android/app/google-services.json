@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "946026925484",
+    "firebase_url": "https://nomad-e3f2b.firebaseio.com",
+    "project_id": "nomad-e3f2b",
+    "storage_bucket": "nomad-e3f2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946026925484:android:828a6b5622b16249",
+        "android_client_info": {
+          "package_name": "tech.the.nomad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946026925484-c243ia9hpt7no3dcg3eea3879i1c1civ.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.the.nomad",
+            "certificate_hash": "2b67c2d6185b6e192aacae6251c63b9fac21e75a"
+          }
+        },
+        {
+          "client_id": "946026925484-p33vn5e87jo9k243thp0u03vjr3i8dfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq4pX2PCYGlFJok7nOPITAvxoqFFeiWNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946026925484-p33vn5e87jo9k243thp0u03vjr3i8dfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

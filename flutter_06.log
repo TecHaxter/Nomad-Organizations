@@ -1,0 +1,62 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter build aot --suppress-analytics --quiet --target lib\main.dart --output-dir D:\Project\Mobile\nomad\build\app\intermediates\flutter\release\android-arm --target-platform android-arm --release
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = 'D:\Project\Mobile\nomad\build\app\intermediates\flutter\release\android-arm\frontend_server.d' (OS Error: The system cannot find the path specified.
+, errno = 3)
+
+```
+#0      _File.open.<anonymous closure> (dart:io/file_impl.dart:364:9)
+#1      _rootRunUnary (dart:async/zone.dart:1132:38)
+#2      _CustomZone.runUnary (dart:async/zone.dart:1029:19)
+#3      _FutureListener.handleValue (dart:async/future_impl.dart:137:18)
+#4      Future._propagateToListeners.handleValueCallback (dart:async/future_impl.dart:678:45)
+#5      Future._propagateToListeners (dart:async/future_impl.dart:707:32)
+#6      Future._completeWithValue (dart:async/future_impl.dart:522:5)
+#7      Future._asyncComplete.<anonymous closure> (dart:async/future_impl.dart:552:7)
+#8      _rootRun (dart:async/zone.dart:1124:13)
+#9      _CustomZone.run (dart:async/zone.dart:1021:19)
+#10     _CustomZone.runGuarded (dart:async/zone.dart:923:7)
+#11     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:963:23)
+#12     _microtaskLoop (dart:async/schedule_microtask.dart:41:21)
+#13     _startMicrotaskLoop (dart:async/schedule_microtask.dart:50:5)
+#14     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:116:13)
+#15     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:173:5)
+```
+
+## flutter doctor
+
+```
+[✓] Flutter (Channel stable, v1.9.1+hotfix.2, on Microsoft Windows [Version 10.0.18362.356], locale en-IN)
+    • Flutter version 1.9.1+hotfix.2 at D:\Framework\flutter
+    • Framework revision 2d2a1ffec9 (4 weeks ago), 2019-09-06 18:39:49 -0700
+    • Engine revision b863200c37
+    • Dart version 2.5.0
+
+[✓] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    • Android SDK at C:\Users\TIKKU\AppData\Local\Android\sdk
+    • Android NDK location not configured (optional; useful for native profiling support)
+    • Platform android-29, build-tools 29.0.2
+    • Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b03)
+    • All Android licenses accepted.
+
+[✓] Android Studio (version 3.5)
+    • Android Studio at C:\Program Files\Android\Android Studio
+    • Flutter plugin version 39.0.3
+    • Dart plugin version 191.8423
+    • Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b03)
+
+[✓] VS Code (version 1.38.1)
+    • VS Code at C:\Users\TIKKU\AppData\Local\Programs\Microsoft VS Code
+    • Flutter extension version 3.5.1
+
+[✓] Connected device (1 available)
+    • POCO F1 • eef3bcef • android-arm64 • Android 9 (API 28)
+
+• No issues found!
+```

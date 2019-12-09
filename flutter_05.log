@@ -1,0 +1,46 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d eef3bcef
+
+## exception
+
+SocketException: SocketException: Write failed (OS Error: The pipe is being closed.
+, errno = 232), port = 0
+
+```
+null```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, v1.7.8+hotfix.4, on Microsoft Windows [Version 10.0.17134.950], locale en-IN)
+    [32m•[39m Flutter version 1.7.8+hotfix.4 at D:\Framework\flutter
+    [32m•[39m Framework revision 20e59316b8 (7 weeks ago), 2019-07-18 20:04:33 -0700
+    [32m•[39m Engine revision fee001c93f
+    [32m•[39m Dart version 2.4.0
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    [32m•[39m Android SDK at C:\Users\TIKKU\AppData\Local\Android\sdk
+    [32m•[39m Android NDK location not configured (optional; useful for native profiling support)
+    [32m•[39m Platform android-29, build-tools 29.0.2
+    [32m•[39m Java binary at: C:\Program Files\Android\Android Studio\jre\bin\java
+    [32m•[39m Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b03)
+    [32m•[39m All Android licenses accepted.
+
+[32m[✓][39m Android Studio (version 3.5)
+    [32m•[39m Android Studio at C:\Program Files\Android\Android Studio
+    [32m•[39m Flutter plugin version 39.0.3
+    [32m•[39m Dart plugin version 191.8423
+    [32m•[39m Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b03)
+
+[32m[✓][39m VS Code (version 1.38.0)
+    [32m•[39m VS Code at C:\Users\TIKKU\AppData\Local\Programs\Microsoft VS Code
+    [32m•[39m Flutter extension version 3.4.1
+
+[32m[✓][39m Connected device (1 available)
+    [32m•[39m POCO F1 • eef3bcef • android-arm64 • Android 9 (API 28)
+
+[32m•[39m No issues found!
+```

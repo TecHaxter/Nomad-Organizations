@@ -1,0 +1,157 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:geolocation/screens/drawer.dart';
+import 'package:geolocation/utils/theme_color.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+typedef void VoidCallback();
+
+class UserMap extends StatefulWidget {
+  final String institute;
+  final String bus;
+  final String name;
+  final String userID;
+  UserMap(this.institute, this.bus, this.name, this.userID);
+
+  @override
+  State<StatefulWidget> createState() {
+    return UserMapState();
+  }
+}
+
+class UserMapState extends State<UserMap> {
+
+  GoogleMapController mapController;
+  Location location = new Location();
+
+  Map<PolylineId, Polyline> _mapPolylines = {};
+  int _polylineIdCounter = 1;
+
+  final List<LatLng> points = <LatLng>[];
+
+  getRoute() {
+    Firestore.instance
+      .collection(widget.institute)
+      .document(widget.bus)
+      .collection('Route')
+      .snapshots()
+      .listen(
+        (snap)  => snap.documents.forEach((doc){
+          print(doc.data['LatLng'].latitude.toString());
+          points.add(LatLng(doc.data['LatLng'].latitude, doc.data['LatLng'].longitude));                   
+        }),
+      );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getRoute();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("GeoLocation"),
+      ),
+      drawer: DrawerWidget(name: widget.name, userID: widget.userID,),
+      body: Stack(
+        children: <Widget>[
+          GoogleMap(
+            initialCameraPosition: CameraPosition(
+              target: LatLng(26.2389, 73.0243),
+              zoom: 12
+            ),
+            rotateGesturesEnabled: true,
+            compassEnabled: true,
+            onMapCreated: _onMapCreated,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: false,
+            mapType: MapType.normal,
+            polylines: Set<Polyline>.of(_mapPolylines.values),
+          ),
+          Positioned(
+            bottom: 50,
+            right: 20,
+            child: RawMaterialButton(
+              child: Icon(Icons.gps_fixed, size: 30.0),
+              fillColor: white,
+              shape: new CircleBorder(),
+              onPressed: _animateToUser,
+              padding: EdgeInsets.all(8.0),
+            ),
+          ),
+          StreamBuilder(
+            stream: Firestore.instance.collection(widget.institute.toString()).document(widget.bus.toString()).collection("Driver").snapshots(),
+            builder: (context, snap) {
+              if(snap.hasData) {
+                List<DocumentSnapshot> snapshot = snap.data.documents;
+                if(snapshot[0]['session'] == 1)
+                {
+                  return Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: Text("Online", textAlign: TextAlign.center,),
+                    color: white,
+                  );
+                } else {
+                  return Container(
+                    height: 50,
+                    width: double.infinity,
+                    child: Text("Offline", textAlign: TextAlign.center,),
+                    color: white,
+                  );
+                }
+              } else {
+                return Container(
+                    child: Text("Error Data"),
+                );
+              }
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  void _add() {
+    final String polylineIdVal = 'polyline_id_$_polylineIdCounter';
+    _polylineIdCounter++;
+    final PolylineId polylineId = PolylineId(polylineIdVal);
+
+    final Polyline polyline = Polyline(
+      polylineId: polylineId,
+      consumeTapEvents: true,
+      color: Colors.grey,
+      width: 20,
+      points: points,
+    );
+
+    setState(() {
+      _mapPolylines[polylineId] = polyline;
+    });
+  }
+
+  _animateToUser() async {
+    location.onLocationChanged();
+    var pos = await location.getLocation();
+    mapController.animateCamera(CameraUpdate.newCameraPosition(
+      CameraPosition(
+        target: LatLng(pos.latitude, pos.longitude),
+        zoom: 17.0,
+      )
+    ));
+  }
+
+  _onMapCreated(GoogleMapController controller) {
+    _add();
+    setState(() {
+      mapController = controller;
+    });
+  }
+
+}
